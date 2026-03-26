@@ -41,4 +41,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // FAQ Interaction
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            const icon = question.querySelector('i');
+            
+            // Close other items
+            document.querySelectorAll('.faq-item').forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('i').classList.replace('fa-minus', 'fa-plus');
+                }
+            });
+
+            // Toggle current item
+            const isOpen = item.classList.toggle('active');
+            if (isOpen) {
+                icon.classList.replace('fa-plus', 'fa-minus');
+            } else {
+                icon.classList.replace('fa-minus', 'fa-plus');
+            }
+        });
+    });
 });
